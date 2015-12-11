@@ -1,50 +1,50 @@
-html
-  head  
+<html>
+  <head>
   //Include d3 library
-    script(type="text/javascript" src="d3.js")
-    body
-      script(type="text/javascript")
+    <script(type="text/javascript" src="d3.js")</script>
+    <body>
+      <script(type="text/javascript")></script>
         //Append initial svg element to the body of the HTML
         var mySVG = d3.select("body").append("svg");
-        
+
         //Define the dimensions of svg element
-        mySVG  
+        mySVG
           .attr("width", 500);
           .attr("height", 500);
-        
+
         //Scale data to correct pixel dimension.
         //There are 1000 counts and the height of the bars
         //is set to 500 px of data we cannot use
-        //the raw numbers for pixel height so we must scale the data to 
+        //the raw numbers for pixel height so we must scale the data to
         //the correct pixel dimensions
         var heightScale = d3.scale.linear()
-          .domain([0, d3.max(de, function(d){return d.count;})])// The range of data you want to scale 
+          .domain([0, d3.max(de, function(d){return d.count;})])// The range of data you want to scale
           .range([0, 400]);// The range of pixels you want to scale
-        
-        
-        //-Write the main rendering statements 
+
+
+        //-Write the main rendering statements
           // Create an SVG rectangle for for every element of the data array
-        
+
         var myBars = mySVG.selectAll('rect') //Selects all rect elements in the svg
           .data(de) //Binds each element of the 'de' array to a rectangle element
           .enter() //Allows you to select any kind of unbound data
           .append('svg:rect');   // attaches the rectangles
-          
-          
-        //- Set the visual properties of each bar 
+
+
+        //- Set the visual properties of each bar
         myBars
           .attr('width',20)
           .attr('height',function(d,i) {return heightScale(d.count)});
-        
-        
+
+
         //- Set height, width and proportion properties of each bar
-        
+
         myBars
           .attr('x', function(d,i) {return (i * 22) + 100;})
           .attr('y', function(d,i) {return 400 - heightScale(d.count)})
-        
-        
-        //-Draw the axis and labels 
+
+
+        //-Draw the axis and labels
         mySVG.selectAll(".xLabel")
           .data(de)
           .enter().append("svg:text")
@@ -53,7 +53,7 @@ html
           .attr('text-anchor', 'middle')
           .text(function(d,i) {return d.name;})
           .attr('transform', function(d,i) {return 'rotate(-90,' + (113 + (i * 22)) + ',435)';});
-          
+
         mySVG.selectAll(".xLabel")
           .data(heightScale.ticks(10))
           .enter().append("svg:text")
@@ -61,7 +61,7 @@ html
           .attr('y',function(d) {return 400 - heightScale(d);})
           .attr("text-anchor", "end")
           .text(function(d){return d;});
-        
+
         mySVG.selectAll(".yTicks")
           .data(heightScale.ticks(10))
           .enter().append("svg:line")
@@ -70,4 +70,4 @@ html
           .attr('x2', 320)
           .attr('y2',function(d) {return 400 - heightScale(d);})
           .style('stroke', 'black');
-  
+      </script>
