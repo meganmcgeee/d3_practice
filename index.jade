@@ -44,6 +44,30 @@ html
           .attr('y', function(d,i) {return 400 - heightScale(d.count)})
         
         
-        //- 
-        mySVG.selectAll
+        //-Draw the axis and labels 
+        mySVG.selectAll(".xLabel")
+          .data(de)
+          .enter().append("svg:text")
+          .attr('y', function(d,i) {return 113 + (i * 22);})
+          .attr('y', 435)
+          .attr('text-anchor', 'middle')
+          .text(function(d,i) {return d.name;})
+          .attr('transform', function(d,i) {return 'rotate(-90,' + (113 + (i * 22)) + ',435)';});
+          
+        mySVG.selectAll(".xLabel")
+          .data(heightScale.ticks(10))
+          .enter().append("svg:text")
+          .attr('x', 50)
+          .attr('y',function(d) {return 400 - heightScale(d);})
+          .attr("text-anchor", "end")
+          .text(function(d){return d;});
+        
+        mySVG.selectAll(".yTicks")
+          .data(heightScale.ticks(10))
+          .enter().append("svg:line")
+          .attr('x1',320)
+          .attr('y1',function(d) {return 400 - heightScale(d);})
+          .attr('x2', 320)
+          .attr('y2',function(d) {return 400 - heightScale(d);})
+          .style('stroke', 'black');
   
