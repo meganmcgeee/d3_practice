@@ -4,5 +4,11 @@ html
     script(type="text/javascript" src="d3.js")
     body
       script(type="text/javascript")
-        //Append initial svg to the body of the HTML
+        //Append initial svg element to the body of the HTML
         var mySVG = d3.select("body").append("svg");
+        
+        //Define the dimensions of svg element
+        mySVG  
+          .attr("width", 500);
+          .attr("height", 500);
+        
