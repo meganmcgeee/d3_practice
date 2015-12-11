@@ -1,5 +1,5 @@
 // This is where ye data lies
-const de = [
+const data = [
           { count: 728, name: 'sample0' },
           { count: 824, name: 'sample1' },
           { count: 963, name: 'sample2' },
