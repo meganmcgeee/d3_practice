@@ -12,3 +12,11 @@ html
           .attr("width", 500);
           .attr("height", 500);
         
+        //Scale data to correct pixel dimension.
+        //There are 1000 counts and the height of the bars
+        //is set to 500 px of data we cannot use
+        //the raw numbers for pixel height so we must scale the data to 
+        //the correct pixel dimensions
+        var heightScale = d3.scale.linear()
+          .domain([0, 963])// The range of data you want to scale 
+          .range([0, 400]);// The range of pixels you want to scale
