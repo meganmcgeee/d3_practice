@@ -25,7 +25,25 @@ html
         //-Write the main rendering statements 
           // Create an SVG rectangle for for every element of the data array
         
-        var myBars = mySVG.selectAll('rect')
-          .data(de)
-          .enter()
-          .append('svg:rect');   
+        var myBars = mySVG.selectAll('rect') //Selects all rect elements in the svg
+          .data(de) //Binds each element of the 'de' array to a rectangle element
+          .enter() //Allows you to select any kind of unbound data
+          .append('svg:rect');   // attaches the rectangles
+          
+          
+        //- Set the visual properties of each bar 
+        myBars
+          .attr('width',20)
+          .attr('height',function(d,i) {return heightScale(d.count)});
+        
+        
+        //- Set height, width and proportion properties of each bar
+        
+        myBars
+          .attr('x', function(d,i) {return (i * 22) + 100;})
+          .attr('y', function(d,i) {return 400 - heightScale(d.count)})
+        
+        
+        //- 
+        mySVG.selectAll
+  
